@@ -18,7 +18,8 @@ posts = Post.all
 end
 
 Post.find_or_create_by(title: "Cat In The Hat", body: "Green Eggs And Ham")
-Comment.find_or_create_by(title: Post, body: "Hop On Pop")
+unique_post = Post.find_or_create_by(title: "Cat In The Hat", body: "Green Eggs And Ham")
+Comment.find_or_create_by(body: "Hop On Pop", post: unique_post)
 
 puts "Seed finished"
 puts "#{Post.count} posts created"
