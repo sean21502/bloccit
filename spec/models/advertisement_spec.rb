@@ -5,15 +5,15 @@ RSpec.describe Advertisement, type: :model do
 
   describe "advertisement" do
 
-    it "should repsond to title" do
+    it "should respond to title" do
       expect(advertisement).to respond_to(:title)
     end
 
-    it "should repsond to copy" do
+    it "should respond to copy" do
       expect(advertisement).to respond_to(:copy)
     end
 
-    it "should repsond to price" do
+    it "should respond to price" do
       expect(advertisement).to respond_to(:price)
     end
   end
