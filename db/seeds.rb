@@ -24,6 +24,7 @@ end
 		body: RandomData.random_paragraph,
 		resolved: false
 		)
+end
 
 puts "Seed finished"
 puts "#{Post.count} posts created"

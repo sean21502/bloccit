@@ -29,7 +29,7 @@ RSpec.describe QuestionsController, type: :controller do
 			expect(response).to have_http_status(:success)
 		end
 		
-		it "returns the #show view"
+		it "returns the #show view" do
 			get :show , {id: my_question.id}
 			expext(response).to render_template(:show)
 	    end
