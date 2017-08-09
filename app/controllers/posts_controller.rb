@@ -43,10 +43,10 @@ class PostsController < ApplicationController
     end
   end
 	
-  def destory
+  def destroy
     @post = Post.find(params[:id])
  
- 	if @post.destory
+ 	if @post.destroy
       flash[:notice] = "\"#{@post.title}\" was deleted successfully."
       redirect_to posts_path
     else

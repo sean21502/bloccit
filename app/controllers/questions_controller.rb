@@ -42,7 +42,7 @@ class QuestionsController < ApplicationController
   def delete
 	  @question = Question.find(params[:id])
 	  
-	  if @question.destory
+	  if @question.destroy
 		  flash[:notice] = "Say Bye Bye to #{@question.title}"
 		  redirect_to questions_path
 	  else
