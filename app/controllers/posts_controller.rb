@@ -1,11 +1,10 @@
 class PostsController < ApplicationController
-
   def show
     @post = Post.find(params[:id])
   end
 
   def new
-	@topic = Topic.find(params[:topic_id])
+    @topic = Topic.find(params[:topic_id])
     @post = Post.new
   end
 
@@ -13,7 +12,8 @@ class PostsController < ApplicationController
     @post = Post.new
     @post.title = params[:post][:title]
     @post.body = params[:post][:body]
-	@topic = Topic.find(params[:topic_id])
+    @topic = Topic.find(params[:topic_id])
+    @post.topic = @topic
 
     if @post.save
       flash[:notice] = "Post was saved."
@@ -25,14 +25,14 @@ class PostsController < ApplicationController
   end
 
   def edit
-	  @post = Post.find(params[:id])
+    @post = Post.find(params[:id])
   end
-	
+
   def update
     @post = Post.find(params[:id])
     @post.title = params[:post][:title]
     @post.body = params[:post][:body]
- 
+
     if @post.save
       flash[:notice] = "Post was updated."
       redirect_to [@post.topic, @post]
@@ -41,11 +41,11 @@ class PostsController < ApplicationController
       render :edit
     end
   end
-	
+
   def destroy
     @post = Post.find(params[:id])
- 
- 	if @post.destroy
+
+    if @post.destroy
       flash[:notice] = "\"#{@post.title}\" was deleted successfully."
       redirect_to @post.topic
     else
@@ -53,4 +53,4 @@ class PostsController < ApplicationController
       render :show
     end
   end
-end
+
