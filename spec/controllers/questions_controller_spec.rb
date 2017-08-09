@@ -53,13 +53,13 @@ RSpec.describe QuestionsController, type: :controller do
 		
 		it "instantiates @questions" do
 			get :new
-			expect(assigns(:questions)).not_to be_nil 
+			expect(assigns(:question)).not_to be_nil 
 		end
 	end
 	
 	describe "POST create" do
 		it "increases the number of Questions by 1" do
-			expect {post :create, params: {question: {title: "Title", body: "Body", resolved: false}}}.to change(Question,:count).by(1)
+			expect{post :create, params: {question: {title: "Title", body: "Body", resolved: false}}}.to change(Question,:count).by(1)
 		end
 		
 		it "assigns the new question to @question" do
@@ -90,7 +90,7 @@ RSpec.describe QuestionsController, type: :controller do
 			new_title = RandomData.random_sentence
 			new_body = RandomData.random_paragraph
 			
-			put :update ,id: my_question.id, question: { title: new_title, body: new_body, resolved: false}
+			put :update ,params:{id: my_question.id, question: { title: new_title, body: new_body, resolved: false}}
 			updated_question = assigns(:question)
 			expect(updated_question.id).to eq my_question.id
 			expect(updated_question.title).to eq new_title
@@ -101,20 +101,20 @@ RSpec.describe QuestionsController, type: :controller do
 			new_title = RandomData.random_sentence
 			new_body = RandomData.random_paragraph
 			
-			put :update ,id: my_question.id, question: { title: new_title, body: new_body, resolved: true}
+			put :update ,params:{id: my_question.id, question: { title: new_title, body: new_body, resolved: true}}
 			expect(response).to redirect_to my_question
 		end
 	end
 
 	describe "DELETE destory" do
 		it "deletes the question" do
-			delete :destory, {id: my_question.id}
+			delete :destory, params: {id: my_question.id}
 			count = Question.where({id: my_question.id}).size
 			expect(count).to eq 0
 		end
 		
-		it "redirects the questions index" do
-			delete :destory, {id: my_question.id}
+		it "redirects the question index" do
+			delete :destory, params: {id: my_question.id}
 			expect(response).to redirect_to questions_path
 		end
 	end
