@@ -39,7 +39,7 @@ class QuestionsController < ApplicationController
 	  end
   end
 	
-  def delete
+  def destroy
 	  @question = Question.find(params[:id])
 	  
 	  if @question.destroy
