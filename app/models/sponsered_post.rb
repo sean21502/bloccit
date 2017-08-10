@@ -1,0 +1,2 @@
+class SponseredPost < ApplicationRecord
+end

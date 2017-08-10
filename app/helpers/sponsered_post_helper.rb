@@ -1,0 +1,2 @@
+module SponseredPostHelper
+end
