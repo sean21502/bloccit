@@ -46,3 +46,6 @@ group :development, :test do
   gem 'rails-controller-testing'
   gem 'shoulda'
 end
+
+# Used for encrypting passwords
+gem 'bcrypt'
