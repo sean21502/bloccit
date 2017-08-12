@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   
-  	resources :sponsored_post
+  	resources :sponsoredposts
 	resources :topics do
     resources :posts, except: [:index]
   end
