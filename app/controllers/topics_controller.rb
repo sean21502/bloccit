@@ -31,6 +31,7 @@ class TopicsController < ApplicationController
    	end
 	
 	def update
+		@topic = Topic.find(params[:id])
      	@topic.assign_attributes(topic_params)
  
      	if @topic.save
@@ -63,8 +64,13 @@ class TopicsController < ApplicationController
 	
 	def authorize_user
      	unless current_user.admin?
-       		flash[:alert] = "You must be an admin to do that."
-       		redirect_to topics_path
-     	end
-   	end
+        	if (params['action'] == "new" || params['action'] == "create" || params['action'] == "destroy") && !current_user.admin?
+            	flash[:error] = "You must be an admin to do that."
+                redirect_to topics_path
+            elsif (params['action'] == "update" && !(current_user.admin? || current_user.moderator?))
+                flash[:error] = "You must be an admin or moderator to do that."
+                redirect_to topics_path
+     		end
+   		end
+	end
 end
