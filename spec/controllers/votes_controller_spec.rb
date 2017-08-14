@@ -16,12 +16,12 @@ require 'rails_helper'
        end
      end
 	   
-	   describe "POST down_vote" do
-       		it "redirects the user to the sign in view" do
-         		delete :down_vote, params: { post_id: user_post.id }
-         		expect(response).to redirect_to(new_session_path)
-			end
+	 describe "POST down_vote" do
+       it "redirects the user to the sign in view" do
+         delete :down_vote, params: { post_id: user_post.id }
+         expect(response).to redirect_to(new_session_path)
 	   end
+	 end
    end
  
    context "signed in user" do
@@ -63,7 +63,7 @@ require 'rails_helper'
        end
      end
 	   
-	   describe "POST down_vote" do
+	 describe "POST down_vote" do
        it "the users first vote increases number of post votes by one" do
          votes = user_post.votes.count
          post :down_vote, params: { post_id: user_post.id }
