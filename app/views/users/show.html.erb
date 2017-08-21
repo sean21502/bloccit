@@ -33,7 +33,13 @@
   		<%= render @user.comments %>
 	<% end %>
  	
-<%= render partial: 'users/favorite', locals: {post: favorite.post} %>
-
+ <h2>Favorites</h2>
+ 	<% if user_has_favorites? %>
+  		<% @user.name %> has not favorited any posts yet. 
+	<% else %>
+	  	<% @user.favorites.each do |favorite| %>
+		<%= render partial: 'users/favorite', locals: {post: favorite.post} %>
+		<% end %>  
+	<% end %> 
 
 	

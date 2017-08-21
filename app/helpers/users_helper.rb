@@ -8,8 +8,6 @@ module UsersHelper
 	end
 	
 	def user_has_favorites?
-		@user.avatar_url(128)
-		@user.posts.count
-		@user.comments.count
+		@user.favorites.empty?
 	end
 end
